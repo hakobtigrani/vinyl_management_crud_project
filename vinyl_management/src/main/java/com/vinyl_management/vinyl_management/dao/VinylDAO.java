@@ -80,4 +80,42 @@ public class VinylDAO {
         return list;
     }
 
+    public Vinyl getById(int id) {
+        String sql = "SELECT * FROM vinyls WHERE id = ?";
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Vinyl(
+                        rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("artist"),
+                        rs.getString("genre"),
+                        rs.getInt("year"),
+                        rs.getString("condition"),
+                        rs.getDouble("price")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void deleteById(int id) {
+        String sql = "DELETE FROM vinyls WHERE id = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

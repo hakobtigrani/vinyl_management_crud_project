@@ -46,14 +46,13 @@ public class Vinyl {
 
     @Override
     public String toString() {
-        return "Vinyl{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", artist='" + artist + '\'' +
-                ", genre='" + genre + '\'' +
-                ", year=" + year +
-                ", condition='" + condition + '\'' +
-                ", price=" + price +
-                '}';
+        return
+                "\nVINYL ID: " + id +
+                "\nTITLE: " + title +
+                "\nARTIST: " + artist +
+                "\nGENRE: " + genre +
+                "\nYEAR: " + year +
+                "\nCONDITION: " + condition +
+                "\nPRICE: " + price;
     }
 }
